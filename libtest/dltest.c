@@ -2,8 +2,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <dlfcn.h>
+#include <mcheck.h>
 
 int main(void){
+	mtrace();
 	void *handle;
 	int (*add)(int, int), (*substract)(int, int), (*multiply)(int, int);
 	float (*divide)(int, int);
@@ -44,5 +46,6 @@ int main(void){
 	printf("multiply(1,2) = %d\n", (*multiply)(1, 2));
 	printf("divide(2,4) = %d\n", (*divide)(2, 4));
 	dlclose(handle);
+	muntrace();
 	return 0;
 }
